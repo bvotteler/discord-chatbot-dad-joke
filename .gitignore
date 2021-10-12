@@ -41,3 +41,7 @@ typings
 .serverless
 .webpack
 tsc
+
+# Secrets n stuff
+.env
+config.json
