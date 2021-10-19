@@ -23,6 +23,7 @@ frameworkVersion: '2'
 provider:
   name: aws
   runtime: nodejs12.x
+  region: ap-southeast-2
   lambdaHashingVersion: 20201221
 
 # you can overwrite defaults here
@@ -58,6 +59,13 @@ provider:
 #    - include-me-dir/**
 
 functions:
+  discordHello:
+    handler: src/handler.discordHandler
+    events: 
+      - httpApi:
+          path: /discord
+          method: post
+
   hello:
     handler: src/handler.hello
 #    The following are a few example events you can configure

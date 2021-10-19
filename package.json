@@ -24,14 +24,11 @@
     "url": "https://github.com/bvotteler/discord-chatbot-chuck/issues"
   },
   "homepage": "https://github.com/bvotteler/discord-chatbot-chuck#readme",
-  "dependencies": {
-    "@discordjs/builders": "^0.6.0",
-    "@discordjs/rest": "^0.1.0-canary.0",
-    "discord-api-types": "^0.23.1",
-    "discord.js": "^13.2.0",
-    "dotenv": "^10.0.0"
-  },
   "devDependencies": {
+    "aws-sdk": "^2.1010.0",
     "eslint": "^8.0.0"
+  },
+  "dependencies": {
+    "axios": "^0.23.0"
   }
 }
