@@ -1,6 +1,6 @@
-import { SecretsManager } from "aws-sdk";
-import { discordBotAPIKeyName } from "../consts/envProps";
+const SecretsManager = require("aws-sdk").SecretsManager;
 
+const discordBotAPIKeyName = '/dev/serverless_discord_bot/chuck_bot';
 const secretsManager = new SecretsManager();
 
 /**
@@ -13,7 +13,7 @@ let __discordSecrets = undefined;
  * 
  * @returns The Discord secrets to be used.
  */
-export async function getDiscordSecrets() {
+module.exports.getDiscordSecrets = async () => {
   if (!__discordSecrets) {
     try {
       const discordApiKeys = await secretsManager.getSecretValue({

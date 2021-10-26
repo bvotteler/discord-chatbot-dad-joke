@@ -1,7 +1,7 @@
 'use strict';
 
-import axios from 'axios';
-import { getDiscordSecrets } from './secrets/discordSecret';
+const axios = require('axios');
+const getDiscordSecrets = require('./secrets/discordSecret').getDiscordSecrets;
 
 module.exports.hello = async (event) => {
   return {
