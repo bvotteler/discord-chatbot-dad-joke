@@ -28,3 +28,11 @@ module.exports.getDiscordSecrets = async () => {
   }
   return __discordSecrets;
 };
+// TODO: remove later, unless we want to try getting the key via environment again
+// module.exports.getDiscordSecrets = async () => {
+//   console.log('found api keys? ' + (process.env.DISCORD_BOT_API_KEYS !== null));
+//   const keys = JSON.parse(process.env.DISCORD_BOT_API_KEYS);
+//   return keys;
+// }
+
+module.exports.apiKeyName = discordBotAPIKeyName;

@@ -1,7 +1,8 @@
 'use strict';
 
-const axios = require('axios');
-const getDiscordSecrets = require('./secrets/discordSecret').getDiscordSecrets;
+// const axios = require('axios');
+const getDiscordSecrets = require('./secrets/discordSecret.js').getDiscordSecrets;
+const apiKeyName = require('./secrets/discordSecret.js').apiKeyName;
 
 module.exports.hello = async (event) => {
   return {
@@ -27,7 +28,10 @@ module.exports.discordHandler = async (event) => {
     embeds: [],
     allowed_mentions: [],
   };
-  if (event.jsonBody.token && await sendResponse(response, event.jsonBody.token)) {
+  console.log('event: ' + JSON.stringify(event));
+  // TODO: need to make this a LOT safer
+  const token = JSON.parse(event.body).token;
+  if (token && await sendResponse(response, token)) {
     console.log('Responded successfully!');
   } else {
     console.log('Failed to send response!');
@@ -38,17 +42,27 @@ module.exports.discordHandler = async (event) => {
 
 const sendResponse = async (response, interactionToken) => {
   const discordSecret = await getDiscordSecrets();
+  if (discordSecret == null) {
+    console.error('Unable to get discord secrets for key: ' + apiKeyName);
+    return false;
+  }
+
   const authConfig = {
     headers: {
-      'Authorization': `Bot ${discordSecret?.DISCORD_TOKEN}`
+      'Authorization': `Bot ${discordSecret.DISCORD_TOKEN}`
     }
   };
 
-  try {
-    let url = `https://discord.com/api/v9/webhooks/${discordSecret?.CLIENT_ID}/${interactionToken}`;
-    return (await axios.post(url, response, authConfig)).status == 200;
-  } catch (exception) {
-    console.log(`There was an error posting a response: ${exception}`);
-    return false;
-  }
+  // TODO: continue here, use axios for real calls
+  console.log('got a token? ' + (discordSecret.DISCORD_TOKEN !== undefined));
+  // remember to remove this
+  return true;
+
+//   try {
+//     let url = `https://discord.com/api/v9/webhooks/${discordSecret?.CLIENT_ID}/${interactionToken}`;
+//     return (await axios.post(url, response, authConfig)).status == 200;
+//   } catch (exception) {
+//     console.log(`There was an error posting a response: ${exception}`);
+//     return false;
+//   }
 };

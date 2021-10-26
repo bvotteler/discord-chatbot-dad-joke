@@ -25,6 +25,14 @@ provider:
   runtime: nodejs12.x
   region: ap-southeast-2
   lambdaHashingVersion: 20201221
+  iam:
+    role:
+      statements:
+        - Effect: 'Allow'
+          Action:
+            - 'secretsmanager:GetSecretValue'
+          # fix this later, look up correct way to reference
+          Resource: '*'
 
 functions:
   discordHello:
@@ -33,7 +41,8 @@ functions:
       - httpApi:
           path: /discord
           method: post
-
+    # environment:
+    #   DISCORD_BOT_API_KEYS: ${ssm:/dev/serverless_discord_bot/chuck_bot}
   hello:
     handler: src/handler.hello
     events:
