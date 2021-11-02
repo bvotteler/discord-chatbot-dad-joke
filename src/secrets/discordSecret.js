@@ -13,6 +13,7 @@ let __discordSecrets = undefined;
  * <p>The code assumes the returned secrets object has the following fields:
  * <ul>
  * <li>CLIENT_ID</li>
+ * <li>CLIENT_PUBLIC_KEY</li>
  * <li>GUILD_ID</li>
  * <li>DISCORD_TOKEN</li>
  * </ul>

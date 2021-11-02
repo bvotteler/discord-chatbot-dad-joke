@@ -31,6 +31,7 @@
     "serverless-offline": "^8.2.0"
   },
   "dependencies": {
-    "axios": "^0.23.0"
+    "axios": "^0.23.0",
+    "discord-interactions": "^2.4.1"
   }
 }
