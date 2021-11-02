@@ -20,6 +20,13 @@ service: discord-chatbot-chuck
 # Check out our docs for more details
 frameworkVersion: '2'
 
+plugins:
+  - serverless-offline
+
+custom:
+  serverless-offline:
+    httpPort: 3003     # sets port for endpoints when running sls offline
+  
 provider:
   name: aws
   runtime: nodejs12.x

@@ -42,6 +42,9 @@ typings
 .webpack
 tsc
 
+# VSCode
+.vscode
+
 # Secrets n stuff
 .env
 config.json

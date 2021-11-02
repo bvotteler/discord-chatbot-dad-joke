@@ -4,6 +4,7 @@
   "description": "Chuck Norris Discord chatbot",
   "main": "handler.js",
   "scripts": {
+    "debug": "export SLS_DEBUG=* && node --inspect ./node_modules/.bin/serverless offline -s dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -26,7 +27,8 @@
   "homepage": "https://github.com/bvotteler/discord-chatbot-chuck#readme",
   "devDependencies": {
     "aws-sdk": "^2.1010.0",
-    "eslint": "^8.0.0"
+    "eslint": "^8.0.0",
+    "serverless-offline": "^8.2.0"
   },
   "dependencies": {
     "axios": "^0.23.0"
