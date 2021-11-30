@@ -47,25 +47,30 @@ module.exports.discordHandler = async (event, ctx, callback) => {
   // TODO: safeguard json parse?
   const interaction = JSON.parse(event.body);
   if (interaction && interaction.type === InteractionType.APPLICATION_COMMAND) {
-    console.log('Identified incoming command. Assuming it is /chuck.');
+    console.log('Identified incoming command. Assuming it is /dadjoke.');
 
-    // Fetch Chuck Joke from API
-    console.log('Fetching Chuck Joke from API.');
-    const chuckApiResponse = await axios.get('https://api.chucknorris.io/jokes/random?category=movie');
+    // Fetch icanhazdadjoke from API
+    console.log('Fetching joke from API.');
+    const jokeApiResponse = await axios.get('https://icanhazdadjoke.com/', {
+      headers: {
+        'Accept': 'application/json',
+        'User-Agent': 'axios 0.23.0'
+      }
+    });
 
-    let chuckJoke = 'Chuck Norris is not a joke.';
-    if (chuckApiResponse && chuckApiResponse.data && chuckApiResponse.data.value) {
-      console.log('Successfully fetched chuck joke from API.');
-      chuckJoke = chuckApiResponse.data.value;
+    let joke = 'Yeah... Not funny, but something didn\'t quite work.';
+    if (jokeApiResponse && jokeApiResponse.data && jokeApiResponse.data.joke) {
+      console.log('Successfully fetched joke from API.');
+      joke = jokeApiResponse.data.joke;
     } else {
-      console.error('Failed to fetch chuck joke from API.');
+      console.error('Failed to fetch joke from API.');
     }
 
     const responseBody = JSON.stringify({
       type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
       data: {
         tts: false,
-        content: chuckJoke,
+        content: joke,
         embeds: [],
         allowed_mentions: []
       }
