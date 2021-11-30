@@ -1,7 +1,7 @@
 {
-  "name": "discord-chatbot-chuck",
+  "name": "discord-chatbot-dad-joke",
   "version": "1.0.0",
-  "description": "Chuck Norris Discord chatbot",
+  "description": "Dad Joke Discord chatbot powered by icanhazdadjoke.com",
   "main": "handler.js",
   "scripts": {
     "debug": "export SLS_DEBUG=* && node --inspect ./node_modules/.bin/serverless offline -s dev",
@@ -9,22 +9,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bvotteler/discord-chatbot-chuck.git"
+    "url": "git+https://github.com/bvotteler/discord-chatbot-dad-joke.git"
   },
   "keywords": [
     "discord",
     "chatbot",
-    "chuck",
-    "norris",
+    "dad jokes",
+    "jokes",
     "serverless",
     "node"
   ],
   "author": "brendon",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/bvotteler/discord-chatbot-chuck/issues"
+    "url": "https://github.com/bvotteler/discord-chatbot-dad-joke/issues"
   },
-  "homepage": "https://github.com/bvotteler/discord-chatbot-chuck#readme",
+  "homepage": "https://github.com/bvotteler/discord-chatbot-dad-joke#readme",
   "devDependencies": {
     "aws-sdk": "^2.1010.0",
     "eslint": "^8.0.0",

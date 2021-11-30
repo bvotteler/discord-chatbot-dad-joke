@@ -1,6 +1,6 @@
 const SecretsManager = require("aws-sdk").SecretsManager;
 
-const discordBotAPIKeyName = '/dev/serverless_discord_bot/chuck_bot';
+const discordBotAPIKeyName = '/dev/serverless_discord_bot/dad_joke_bot';
 const secretsManager = new SecretsManager();
 
 /**
