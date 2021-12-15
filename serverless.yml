@@ -22,11 +22,11 @@ frameworkVersion: '2'
 
 plugins:
   - serverless-offline
-
+  - serverless-lift
 custom:
   serverless-offline:
     httpPort: 3003     # sets port for endpoints when running sls offline
-  
+
 provider:
   name: aws
   runtime: nodejs12.x
@@ -40,6 +40,12 @@ provider:
             - 'secretsmanager:GetSecretValue'
           # fix this later, look up correct way to reference
           Resource: '*'
+
+constructs:
+  commands:
+    type: queue
+    worker:
+      handler: src/handler.sender
 
 functions:
   discordHello:
@@ -56,3 +62,12 @@ functions:
       - httpApi:
           path: /hello
           method: get
+  discordEndpoint:
+    handler: src/handler.endpoint
+    reservedConcurrency: 1
+    events:
+      - httpApi:
+          path: /discordEndpoint
+          method: post
+    environment:
+      QUEUE_URL: ${construct:commands.queueUrl}
